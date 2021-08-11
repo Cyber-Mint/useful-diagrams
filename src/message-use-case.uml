@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+package Clinic {
+  actor Nurse << Contact >> as laura
+  actor "Patient" as fred
+  (Create Message) as (msg_create) << Messaging >>
+  usecase "Attach Picture" as msg_picture << Content >>
+  usecase "Attach Voice Note" as msg_voice_note << Content >>
+  usecase "Message" as msg_note << Content >>
+  usecase "Attach Patient Record" as msg_records << Content >>
+  (msg_create) <.. (msg_picture)
+  (msg_create) <.. (msg_voice_note)
+  (msg_create) <|.. (msg_records)
+  (msg_create) <|.. (msg_note)
+}
+
+package Hospital {
+  actor Doctor << Contact >> as mary 
+  usecase "Deliver Message" as msg_deliver << Messaging >>
+}
+
+package Cloud {
+  usecase "Store & Forward" as msg_server << Messaging >>
+  :System:/ as Server << Application >>
+  usecase "Set Availability" as doctor_online << Availability >>
+  (msg_create) <|.. (doctor_online)
+  mary --> (doctor_online)
+}
+
+
+laura ---> (msg_create)
+(msg_create) ---> Server
+Server <--> (msg_server)
+Server --> (msg_deliver)
+(msg_deliver) ---> mary
+
+laura -> fred
+
+fred --> Hospital
+@enduml

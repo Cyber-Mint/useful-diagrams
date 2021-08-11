@@ -1,0 +1,39 @@
+@startuml
+actor Patient
+  actor Nurse
+  actor Doctor
+  participant System
+  database "Msg Store"
+  database "Patient Records"
+  database "Contacts"
+  
+note right of Nurse
+ 
+end note
+
+Doctor --> System: Updates Status
+System -> System: [doctor.availability]
+
+Nurse --> Contacts: Selects Doctor details
+Contacts --> System: Retrieve Contact Details
+
+
+alt doctor.availability=ONLINE
+  System --> Nurse: Suggest making a phone call
+else doctor.availability=OFFLINE
+  == Create Message ==
+
+  System --> Nurse: Opens Message Editor (To: Doctor)
+  Nurse --> Nurse: Records Voice Note
+  Nurse --> System: Attaches Voice Note
+  Nurse --> "Patient Records": Requests link to patient records
+  "Patient Records" --> System: Attach link to message
+  Nurse --> System: Adds Message Text
+
+  == End Create Message ==
+  
+  Nurse --> System: SEND message
+  System --> "Msg Store": save message in store & forward
+
+end alt
+@enduml
