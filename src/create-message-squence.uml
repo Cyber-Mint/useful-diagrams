@@ -1,5 +1,5 @@
 @startuml
-actor Patient
+  actor Patient
   actor Nurse
   actor Doctor
   participant System
@@ -7,20 +7,21 @@ actor Patient
   database "Patient Records"
   database "Contacts"
   
-note right of Nurse
- 
+note over Nurse
+  This story begins 
+  during Patient Examination
 end note
 
 Doctor --> System: Updates Status
 System -> System: [doctor.availability]
 
 Nurse --> Contacts: Selects Doctor details
-Contacts --> System: Retrieve Contact Details
-
+Contacts --> System: GET://contact{byName=Doctor}
+' Retrieve Contact Details
 
 alt doctor.availability=ONLINE
   System --> Nurse: Suggest making a phone call
-else doctor.availability=OFFLINE
+else doctor.availability=OFFLINE || want to send msg anyway
   == Create Message ==
 
   System --> Nurse: Opens Message Editor (To: Doctor)
