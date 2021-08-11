@@ -3,7 +3,6 @@
 A small repository with examples of useful types of diagrams commonly used by tech teams.
 
 ## Table of Contents
-<img src="./images/remote-medicine.png" width="40%" align="right">
 
 - [Introduction](./introduction.md)
 - [Generic](./generic.md)
@@ -16,7 +15,7 @@ A small repository with examples of useful types of diagrams commonly used by te
 - [Projects](./projects.md)
 - [Architecture](./architecture.md)
 
-<br><br><br><br><br><br>
+<br>
 
 ---
 &copy; Copyright 2021, Cyber-Mint (Pty) Ltd, and distributed under the MIT License.

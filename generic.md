@@ -1,4 +1,5 @@
 # Generic Diagrams
+<img src="./images/remote-medicine.png" width="40%" align="right">
 
 * Rich Diagrams
 
