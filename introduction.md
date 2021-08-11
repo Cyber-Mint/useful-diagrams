@@ -19,7 +19,7 @@ docker run -d -p 8888:8080 plantuml/plantuml-server:jetty
 
 Open your browser on `localhost:8888` to access your very own local plantuml server.
 
-[[Home](./README.md)] [[Next >](./generic.md)]
+[[Home](./README.md)] [[Next >> Generic Diagrams](./generic.md)]
 <br>
 
 ---
