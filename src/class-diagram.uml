@@ -10,14 +10,14 @@
 
     interface SendMessage
 
-    Message *-- TextMessage 
-    Message *-- VoiceMessage
-    Message *-- ImageMessage
-    Message *-- PatientRecord
+    Message *-- TextMessage : "Includes"
+    Message *-- VoiceMessage : "Includes"
+    Message *-- ImageMessage : "Includes"
+    Message *-- PatientRecord : "Includes"
 
-    Contact --|> Message : "creates"
-    Contact --|> SendMessage : "Implements"
+    Contact -||> Message : "Creates"
+    Contact --||> SendMessage : "Implements"
 
-    Patient <-- PatientRecord
+    Patient "1"-->"*" PatientRecord : "Has"
 
 @enduml
