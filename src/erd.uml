@@ -5,14 +5,14 @@ hide circle
 ' avoid problems with angled crows feet
 skinparam linetype ortho
 
-entity "Message" as e01 {
+entity "Message" as msg {
   *id : integer <<AUTO>> <<UNQ>> <<PK>>
   --
   *to : uuid <<FK>>(contact.id)
   description : text
 }
 
-entity "Contact" as e02 {
+entity "Contact" as contact {
   *id : uuid <<AUTO>> <<UNQ>> <<PK>>
   --
   *name : text
@@ -21,19 +21,39 @@ entity "Contact" as e02 {
   available: boolean
 }
 
-entity "ContactType" as e04 {
+entity "ContactType" as contacttype {
   *id: integer <<AUTO>><<PK>>
   description: text
 }
 
-entity "VoiceNote" as e03 {
-  *_id : number <<AUTO>>
+entity "VoiceNote" as voicenote {
+  *id : integer <<AUTO>>
   --
   created_by : uuid <<FK>>(contact.id)
   voice_note : binary
 }
 
-e01 ||..o{ e02
-e01 |o..o| e03
-e02 |o..o{ e04
+entity "Patient" as patient {
+  *id : uuid <<PK>> <<UNQ>>
+  name : text
+  surname : text
+  birthdate : datetime
+  shoe-size: smallint
+}
+
+entity "PatientRecord" as record {
+  *id : integer <<AUTO>> <<pk>> <<UNQ>>
+  patient_id : uuid <<FK>>(patient.id)
+  updated_on : datetime
+  updated_by : uuid <<FK>>(contact.id)
+  medical_history : text
+}
+
+msg ||..o{ contact
+msg |o..o| voicenote
+contact |o..o{ contacttype
+msg |o..o{ record
+patient |o..o{ record
+record }o..o| contact
+
 @enduml
