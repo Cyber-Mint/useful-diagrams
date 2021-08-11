@@ -6,6 +6,7 @@ Where possible we tend to prefer diagrams that live close to our code and even p
 
 ## Developer Hints
 
+### PLANTUML
 For the developer who uses [VSCode](https://code.visualstudio.com/Download) there are good plugins for working with and previewing `plantuml` format files. Use Ctl-P to access the VSCode command pallet and install with:
 ```
 ext install plantuml
@@ -18,6 +19,10 @@ docker run -d -p 8888:8080 plantuml/plantuml-server:jetty
 ```
 
 Open your browser on `localhost:8888` to access your very own local plantuml server.
+
+### Drawing Programs
+For some diagrams a drawing tool like [lucidchart](https://www.lucidchart.com) is ideal.  Although [draw.io](https://draw.io) is a good free alternative 
+<br>
 
 [[Home](./README.md)] [[Next >> Generic Diagrams](./generic.md)]
 <br>
