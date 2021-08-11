@@ -1,0 +1,39 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Message" as e01 {
+  *id : integer <<AUTO>> <<UNQ>> <<PK>>
+  --
+  *to : uuid <<FK>>(contact.id)
+  description : text
+}
+
+entity "Contact" as e02 {
+  *id : uuid <<AUTO>> <<UNQ>> <<PK>>
+  --
+  *name : text
+  other_details : text
+  *contact_type_id: integer <<FK>>(ContactType.id)
+  available: boolean
+}
+
+entity "ContactType" as e04 {
+  *id: integer <<AUTO>><<PK>>
+  description: text
+}
+
+entity "VoiceNote" as e03 {
+  *_id : number <<AUTO>>
+  --
+  created_by : uuid <<FK>>(contact.id)
+  voice_note : binary
+}
+
+e01 ||..o{ e02
+e01 |o..o| e03
+e02 |o..o{ e04
+@enduml
