@@ -1,14 +1,3 @@
-# Project Diagrams
-We make use of several diagram types or visualisations in project planning, such as: 
-* Gantt Charts
-* Mindmap
-* User Story Mapping
-
-## Gantt Chart
-
-Planuml has a rudamentary ability to generate gantt charts which is useful when autogeneration is required.  The following code is rendered below:
-
-```
 @startgantt
   Project starts 2020/03/05
   printscale daily
@@ -24,19 +13,3 @@ Planuml has a rudamentary ability to generate gantt charts which is useful when 
   [Init and write tests report] starts 1 day before [Test prototype]'s start and ends at [Test prototype]'s end
   [Project End] happens at 2020/04/11
 @endgantt
-```
-
-![](images/gantt.png)
-
-## User Story Mapping
-Here is an interesting example of a user story mapping which was done in Lucidchart:
-
-![User Story Mapping](images/user-story-mapping.png)
-
-
-
-[[Back](./deployment-diagrams.md)] [[Home](./README.md)] [[Next >> Architecture](./architecture.md)]
-<br>
-
----
-&copy; Copyright 2021, Cyber-Mint (Pty) Ltd, and distributed under the MIT License.
