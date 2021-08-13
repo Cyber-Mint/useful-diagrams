@@ -1,0 +1,23 @@
+@startuml
+
+    class Contact
+    class Patient
+    abstract class Message
+    class TextMessage
+    class VoiceMessage
+    class ImageMessage
+    class PatientRecord
+
+    interface SendMessage
+
+    Message *-- TextMessage : "Includes"
+    Message *-- VoiceMessage : "Includes"
+    Message *-- ImageMessage : "Includes"
+    Message *-- PatientRecord : "Includes"
+
+    Contact -||> Message : "Creates"
+    Contact --||> SendMessage : "Implements"
+
+    Patient "1"-->"*" PatientRecord : "Has"
+
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Message" as msg {
+  *id : integer <<AUTO>> <<UNQ>> <<PK>>
+  --
+  *to : uuid <<FK>>(contact.id)
+  description : text
+}
+
+entity "Contact" as contact {
+  *id : uuid <<AUTO>> <<UNQ>> <<PK>>
+  --
+  *name : text
+  other_details : text
+  *contact_type_id: integer <<FK>>(ContactType.id)
+  available: boolean
+}
+
+entity "ContactType" as contacttype {
+  *id: integer <<AUTO>><<PK>>
+  description: text
+}
+
+entity "VoiceNote" as voicenote {
+  *id : integer <<AUTO>>
+  --
+  created_by : uuid <<FK>>(contact.id)
+  voice_note : binary
+}
+
+entity "Patient" as patient {
+  *id : uuid <<PK>> <<UNQ>>
+  name : text
+  surname : text
+  birthdate : datetime
+  shoe-size: smallint
+}
+
+entity "PatientRecord" as record {
+  *id : integer <<AUTO>> <<pk>> <<UNQ>>
+  patient_id : uuid <<FK>>(patient.id)
+  updated_on : datetime
+  updated_by : uuid <<FK>>(contact.id)
+  medical_history : text
+}
+
+msg ||..o{ contact
+msg |o..o| voicenote
+contact |o..o{ contacttype
+msg |o..o{ record
+patient |o..o{ record
+record }o..o| contact
+
+@enduml

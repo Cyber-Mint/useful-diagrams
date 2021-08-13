@@ -1,0 +1,40 @@
+@startuml
+  actor Patient
+  actor Nurse
+  actor Doctor
+  participant System
+  database "Msg Store"
+  database "Patient Records"
+  database "Contacts"
+  
+note over Nurse
+  This story begins 
+  during Patient Examination
+end note
+
+Doctor --> System: Updates Status
+System -> System: [doctor.availability]
+
+Nurse --> Contacts: Selects Doctor details
+Contacts --> System: GET://contact{byName=Doctor}
+' Retrieve Contact Details
+
+alt doctor.availability=ONLINE
+  System --> Nurse: Suggest making a phone call
+else doctor.availability=OFFLINE || want to send msg anyway
+  == Create Message ==
+
+  System --> Nurse: Opens Message Editor (To: Doctor)
+  Nurse --> Nurse: Records Voice Note
+  Nurse --> System: Attaches Voice Note
+  Nurse --> "Patient Records": Requests link to patient records
+  "Patient Records" --> System: Attach link to message
+  Nurse --> System: Adds Message Text
+
+  == End Create Message ==
+  
+  Nurse --> System: SEND message
+  System --> "Msg Store": save message in store & forward
+
+end alt
+@enduml

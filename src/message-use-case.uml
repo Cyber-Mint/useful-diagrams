@@ -1,0 +1,40 @@
+@startuml
+left to right direction
+package Clinic {
+  actor Nurse << Contact >> as laura
+  actor "Patient" as fred
+  (Create Message) as (msg_create) << Messaging >>
+  usecase "Picture" as msg_picture << Content >>
+  usecase "Voice Note" as msg_voice_note << Content >>
+  usecase "Message" as msg_note << Content >>
+  usecase "Patient Record" as msg_records << Content >>
+  (msg_create) <.. (msg_picture) : Attach
+  (msg_create) <.. (msg_voice_note) : Attach
+  (msg_create) <|.. (msg_records) : Attach
+  (msg_create) <|.. (msg_note) : Attach
+}
+
+package Hospital {
+  actor Doctor << Contact >> as mary 
+  usecase "Deliver Message" as msg_deliver << Messaging >>
+}
+
+package Cloud {
+  usecase "Store & Forward" as msg_server << Messaging >>
+  :System:/ as Server << Application >>
+  usecase "Set Availability" as doctor_online << Availability >>
+  (msg_create) <|.. (doctor_online) : Confirm if Doctor is \nonline/offline
+  mary --> (doctor_online)
+}
+
+
+laura ---> (msg_create) : determines that \nreferral advice is required
+(msg_create) ---> Server
+Server <--> (msg_server)
+Server --> (msg_deliver)
+(msg_deliver) ---> mary
+
+laura -> fred : Examines
+
+fred --> Hospital : Catches an Uber
+@enduml
