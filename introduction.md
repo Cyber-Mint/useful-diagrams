@@ -28,4 +28,7 @@ For some diagrams a drawing tool like [lucidchart](https://www.lucidchart.com) i
 <br>
 
 ---
+References:
+* https://vvsevolodovich.dev/5-diagrams-to-document-software-architecture/
+---
 &copy; Copyright 2021, Cyber-Mint (Pty) Ltd, and distributed under the MIT License.
