@@ -1,0 +1,45 @@
+# C4 Model
+
+
+![c4model](images/c4model.png)
+> Note: this image was generetated as follows:
+> ```
+> cd src
+> cat C4-model.puml | docker run --rm -i cybermint/plantuml-ci > ../images/C4-model.png
+> ```
+> <br>
+> 
+
+
+```
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+' uncomment the following line and comment the first to use locally
+'!includeul C4_Context.puml
+
+
+Person(customer, "Customer", "A bank client")
+System(abc_system, "Digital Platform", "Allows freelancers and business owners see their transactions.")
+
+System_Ext(idnow, "IDNow", "System for KYC and Qualified Eletronic Signatures")
+System_Ext(pay, "Google Pay/Apple Pay", "Google Pay and Apple Pay systems")
+System_Ext(dms, "DMS", "Document Management System")
+System_Ext(crm, "CRM", "CRM")
+System_Ext(current, "Existing Banking System", "Banking Backoffice")
+
+Rel(abc_system, pay, "uses")
+Rel(customer, abc_system, "Uses")
+
+
+Rel_L(abc_system, idnow, "integrates")
+Rel_Neighbor(abc_system, dms, "uploads files")
+Rel_D(abc_system, crm, "integrates")
+Rel_U(abc_system, current, "uses")
+@enduml
+```
+
+
+---
+References:
+* https://c4model.com/
+* 
