@@ -1,7 +1,7 @@
 # C4 Model
 
 
-![c4model](images/c4model.png)
+![c4model](images/C4-model.png)
 > Note: this image was generetated as follows:
 > ```
 > cd src
@@ -42,4 +42,4 @@ Rel_U(abc_system, current, "uses")
 ---
 References:
 * https://c4model.com/
-* 
+* https://hub.docker.com/r/cybermint/plantuml-ci
