@@ -30,5 +30,6 @@ For some diagrams a drawing tool like [lucidchart](https://www.lucidchart.com) i
 ---
 References:
 * https://vvsevolodovich.dev/5-diagrams-to-document-software-architecture/
+* https://github.com/plantuml-stdlib/C4-PlantUML
 ---
 &copy; Copyright 2021, Cyber-Mint (Pty) Ltd, and distributed under the MIT License.
